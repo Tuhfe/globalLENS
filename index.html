@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GlobalLENS</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>globalLENS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
-    <h1>GlobalLENS</h1>
-    <p>Welcome, Tuhfe!</p>
-    <button onclick="translate()">Translate</button>
-    <div id="output"></div>
+    <h1>globalLENS</h1>
+    <textarea id="inputText" placeholder="Metni buraya yaz..."></textarea>
+    
+    <select id="langSelect">
+      <option value="en|tr">İngilizce → Türkçe</option>
+      <option value="tr|en">Türkçe → İngilizce</option>
+    </select>
+
+    <button onclick="translateText()">Çevir</button>
+
+    <div id="result"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
