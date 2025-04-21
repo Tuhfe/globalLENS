@@ -2,22 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>globalLENS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>globalLENS</h1>
-    <textarea id="inputText" placeholder="Metni buraya yaz..."></textarea>
+    <textarea id="textInput" placeholder="Metni buraya yaz..."></textarea>
     
-    <select id="langSelect">
-      <option value="en|tr">İngilizce → Türkçe</option>
-      <option value="tr|en">Türkçe → İngilizce</option>
+    <select id="languageSelect">
+      <option value="EN">İngilizce</option>
+      <option value="TR">Türkçe</option>
+      <option value="FR">Fransızca</option>
+      <option value="DE">Almanca</option>
     </select>
 
-    <button onclick="translateText()">Çevir</button>
-
+    <button id="translateBtn">Çevir</button>
     <div id="result"></div>
   </div>
 
