@@ -1,4 +1,4 @@
-const apiKey = "1a6bfcf1ba4a4947b4736aabc0e5d42f"; // senin verdiğin API anahtarı
+const apiKey = "1a6bfcf1ba4a4947b4736aabc0e5d42f";
 const translateBtn = document.getElementById("translateBtn");
 const textInput = document.getElementById("textInput");
 const languageSelect = document.getElementById("languageSelect");
@@ -14,7 +14,7 @@ translateBtn.addEventListener("click", async () => {
   }
 
   try {
-    const response = await fetch("https://api.deepl.com/v2/translate", {
+    const response = await fetch("https://api-free.deepl.com/v2/translate", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
