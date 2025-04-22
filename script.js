@@ -57,3 +57,13 @@ function displayError(message) {
     const errorElement = document.getElementById("error-message");
     errorElement.innerText = message;
 }
+function exportData(data) {
+    const csvContent = "data:text/csv;charset=utf-8," 
+        + data.map(row => row.join(",")).join("\n");
+
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", "data.csv");
+    link.click();
+}
