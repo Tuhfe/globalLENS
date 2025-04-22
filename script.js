@@ -78,3 +78,13 @@ function fetchNewsData() {
     });
 }
 document.getElementById("analizTusu").addEventListener("click", fetchNewsData);
+import { fetchNewsData } from './api.js';
+
+fetchNewsData().then(news => {
+  
+  if (news.articles && news.articles.length > 0) {
+    renderNews(news.articles); 
+  } else {
+    alert("Haber bulunamadı! API yanıtı: " + JSON.stringify(news));
+  }
+});
