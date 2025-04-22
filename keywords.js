@@ -1,14 +1,3 @@
-function extractKeywords(data) {
-    // Örnek basit anahtar kelime çıkarımı
-    const keywords = [];
-
-    data.forEach(item => {
-        item.text.split(' ').forEach(word => {
-            if (keywords.indexOf(word) === -1) {
-                keywords.push(word);
-            }
-        });
-    });
-
-    return keywords;
-}
+function extractKeywords(text) {
+    const keywords = text.match(/\b(\w+)\b/g);
+    return keywords ? keywords.slice(0, 5) : [];
