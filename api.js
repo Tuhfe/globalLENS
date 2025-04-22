@@ -5,6 +5,6 @@ export async function fetchNewsData() {
     return await response.json();
   } catch (error) {
     console.error("API Hatası:", error);
-    throw error; // Hata yukarı fırlatılıyor
+    throw error;
   }
 }
