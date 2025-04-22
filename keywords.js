@@ -14,14 +14,14 @@ export function analyzeKeywords(text) {
 
     const words = text.toLowerCase().split(/\s+/);
     
-    // Check for thematic tags
+    
     for (const [tag, keywords] of Object.entries(thematicTags)) {
         if (keywords.some(keyword => text.toLowerCase().includes(keyword))) {
             results.tags.add(tag);
         }
     }
 
-    // Simple keyword extraction (in a real project, use proper NLP)
+    
     const importantWords = words.filter(word => 
         word.length > 4 && 
         !['that', 'this', 'with', 'which', 'have', 'from'].includes(word)
