@@ -2,43 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobaLENS - Uluslararası Gündem İzleyici</title>
+    <title>GlobalLENS</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>GlobaLENS - Uluslararası Gündem İzleyici</h1>
-
+        <h1>GlobalLENS</h1>
         <form id="settingsForm">
-            <label for="region">Bölge Seçin:</label>
-            <select id="region" name="region">
-                <option value="nato">NATO Üyeleri</option>
-                <option value="strategic">Stratejik Ülkeler</option>
-                <option value="crisis">Krizin Olduğu Bölgeler</option>
+            <label for="region">Bölge Seçimi</label>
+            <select id="region">
+                <option value="NATO">NATO Üyeleri</option>
+                <option value="STRATEGIC">Stratejik Ülkeler</option>
+                <option value="CRISIS">Kriz Bölgeleri</option>
             </select>
 
-            <label for="lang">Dil Seçin:</label>
-            <select id="lang" name="lang">
-                <option value="en">İngilizce</option>
-                <option value="tr">Türkçe</option>
+            <label for="lang">Dil Seçimi</label>
+            <select id="lang">
+                <option value="EN">İngilizce</option>
+                <option value="TR">Türkçe</option>
+                <option value="FR">Fransızca</option>
+                <option value="DE">Almanca</option>
             </select>
 
-            <label for="startDate">Başlangıç Tarihi:</label>
-            <input type="date" id="startDate" name="startDate">
+            <label for="startDate">Başlangıç Tarihi</label>
+            <input type="date" id="startDate">
 
-            <label for="endDate">Bitiş Tarihi:</label>
-            <input type="date" id="endDate" name="endDate">
+            <label for="endDate">Bitiş Tarihi</label>
+            <input type="date" id="endDate">
 
             <button type="submit">Verileri Çek</button>
         </form>
-
-        <div id="output">
-            <h2>Veri Görselleştirme</h2>
-            <canvas id="dataChart"></canvas>
-        </div>
-
-        <script src="script.js"></script>
+        
+        <canvas id="dataChart"></canvas>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
