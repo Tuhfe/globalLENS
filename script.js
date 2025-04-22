@@ -1,38 +1,35 @@
-fetchButton.addEventListener('click', async () => {
-    const region = document.getElementById('region').value;
-    const timeframe = document.getElementById('timeframe').value;
+document.getElementById("fetchData").addEventListener("click", async () => {
+  const button = document.getElementById("fetchData");
+  const newsContainer = document.getElementById("newsContainer");
+  
+  button.disabled = true;
+  button.textContent = "Yükleniyor...";
+  newsContainer.innerHTML = '<div class="loading">Haberler getiriliyor...</div>';
+
+  try {
+    const data = await fetchNewsData();
+    if (data.articles.length === 0) throw new Error("Haber bulunamadı");
     
-    fetchButton.disabled = true;
-    fetchButton.textContent = 'Loading...';
-    newsContainer.innerHTML = '<div class="loading">Fetching latest news...</div>';
-    
-    try {
-        const articles = await fetchNewsData(region, timeframe);
-        if (articles.length === 0) {
-            newsContainer.innerHTML = '<div class="info">No articles found for the selected criteria.</div>';
-            return;
-        }
-        
-        currentArticles = processArticles(articles);
-        renderNews(currentArticles);
-        renderTrendChart(currentArticles);
-        renderWordCloud(currentArticles);
-        
-    } catch (error) {
-        console.error('Fetch error:', error);
-        newsContainer.innerHTML = `
-            <div class="error">
-                <p>Error fetching data: ${error.message}</p>
-                <p>Possible solutions:</p>
-                <ul>
-                    <li>Ensure you're using HTTPS connection</li>
-                    <li>Try again later (API might have rate limits)</li>
-                    <li>Check your API key validity</li>
-                </ul>
-            </div>
-        `;
-    } finally {
-        fetchButton.disabled = false;
-        fetchButton.textContent = 'Analyze';
-    }
+    newsContainer.innerHTML = data.articles.map(article => `
+      <div class="news-item">
+        <h3>${article.title}</h3>
+        <p>${article.description || "Açıklama yok"}</p>
+      </div>
+    `).join("");
+
+  } catch (error) {
+    newsContainer.innerHTML = `
+      <div class="error">
+        <p>⛔ Hata: ${error.message}</p>
+        <p>Çözüm için:</p>
+        <ul>
+          <li>İnternet bağlantınızı kontrol edin</li>
+          <li>Daha sonra tekrar deneyin</li>
+        </ul>
+      </div>
+    `;
+  } finally {
+    button.disabled = false;
+    button.textContent = "Analiz Et";
+  }
 });
