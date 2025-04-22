@@ -29,9 +29,9 @@ document.getElementById("settingsForm").addEventListener("submit", function(e) {
         .then(data => {
             console.log(data); // Gelen veriyi konsola yazdırıyoruz.
 
-            // Burada görselleştirmeyi yapmak için Chart.js kullanacağız.
-            const labels = data.map(item => item.date); // Verilerin tarih kısmını etiket olarak kullanıyoruz.
-            const values = data.map(item => item.value); // Verilerin değer kısmını kullanıyoruz.
+            const labels = data.map(item => item.date); 
+
+            const values = data.map(item => item.value); 
 
             const ctx = document.getElementById("dataChart").getContext("2d");
             new Chart(ctx, {
