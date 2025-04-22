@@ -33,3 +33,9 @@ document.getElementById("fetchData").addEventListener("click", async () => {
     button.textContent = "Analiz Et";
   }
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const analyzeBtn = document.getElementById("analyzeBtn");
+    analyzeBtn.addEventListener("click", function() {
+        fetchData();  // API'den veri çekme fonksiyonu
+    });
+});
