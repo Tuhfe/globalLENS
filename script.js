@@ -39,3 +39,17 @@ document.addEventListener("DOMContentLoaded", function() {
         fetchData();  
     });
 });
+function fetchData() {
+    fetch("API_URL")  
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("API Bağlantı Hatası");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);  
+            processData(data);  
+        })
+        .catch(error => console.error("Hata: ", error));
+}
