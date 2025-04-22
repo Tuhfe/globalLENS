@@ -6,19 +6,19 @@ export async function fetchNewsData() {
       `https://corsproxy.io/?https://newsapi.org/v2/top-headlines?country=tr&apiKey=${API_KEY}`
     );
     
-    if (!response.ok) {
-      throw new Error(`HTTP hatası! Durum kodu: ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`HTTP hatası! Kod: ${response.status}`);
     
     const data = await response.json();
     
-    alert(`${data.articles.length} haber başarıyla çekildi!`);
+    if (!data.articles) {
+      alert("API'den articles gelmedi! Veri yapısı: " + JSON.stringify(data));
+      return { articles: [] }; 
+    }
     
     return data;
     
   } catch (error) {
-    
-    alert("API hatası: " + error.message);
-    throw error;
+    alert("API ÇÖKTÜ: " + error.message);
+    return { articles: [] }; 
   }
 }
