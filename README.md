@@ -1,7 +1,5 @@
 # GlobaLENS - Real-time Global Agenda Tracker
 
-![Project Screenshot](./screenshot.png) *(Ekran görüntüsü eklemeyi unutmayın)*
-
 ## 🌍 About
 Advanced analytics dashboard that tracks international developments across 6 regions with:
 - AI-powered thematic tagging (conflict, diplomacy, etc.)
