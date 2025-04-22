@@ -21,11 +21,12 @@ export async function fetchNewsData(region, timeframe) {
 
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
         const data = await response.json();
+        if (data.status === 'error') throw new Error(data.message);
         return data.articles || [];
     } catch (error) {
         console.error('Error fetching news:', error);
-        return [];
+        throw error;
     }
 }
