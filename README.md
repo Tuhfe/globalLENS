@@ -1,20 +1,26 @@
-# GlobalLENS Project
+# GlobaLENS - Global Agenda Tracker
 
-This project fetches world news and visualizes them based on region and date range using the News API.
+A comprehensive tool for tracking and analyzing international news and global trends.
 
-## Files:
+## Features
 
-- `index.html`: The main HTML file where the user interacts.
-- `style.css`: Contains all the styling for the page.
-- `script.js`: Handles the logic of fetching and displaying the data.
-- `api.js`: Manages API requests and responses.
-- `keywords.js`: Contains functions for extracting keywords from the fetched data.
-- `chart.js`: Generates and manages chart data for visual representation.
-- `export.js`: Allows exporting the data in JSON format.
+- Regional news analysis (Global, Europe, Asia, Americas, Middle East, Africa)
+- Timeframe selection (7, 30, or 90 days)
+- Thematic tagging and keyword extraction
+- Data visualization (charts and word clouds)
+- Analyst notes functionality
+- Data export capability
 
-## Setup:
+## Setup
 
-1. Download all the files.
-2. Insert your own API key from [News API](https://newsapi.org/).
-3. Open the `index.html` file in a browser.
-4. Start by selecting your region, language, and date range, and click "Fetch Data".
+1. Clone this repository
+2. Open `index.html` in a modern browser
+3. No server required - runs entirely client-side
+
+## Data Sources
+
+Uses NewsAPI.org for news data (API key included in the code)
+
+## License
+
+MIT License
