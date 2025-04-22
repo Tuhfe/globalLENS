@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GlobalLENS</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,28 +10,28 @@
     <div class="container">
         <h1>GlobalLENS</h1>
         <form id="settingsForm">
-            <label for="region">Bölge Seçimi</label>
+            <label for="region">Region</label>
             <select id="region">
-                <option value="NATO">NATO Üyeleri</option>
-                <option value="STRATEGIC">Stratejik Ülkeler</option>
-                <option value="CRISIS">Kriz Bölgeleri</option>
+                <option value="world">World</option>
+                <option value="us">USA</option>
+                <option value="europe">Europe</option>
+                <option value="asia">Asia</option>
+                <option value="middleeast">Middle East</option>
             </select>
 
-            <label for="lang">Dil Seçimi</label>
+            <label for="lang">Language</label>
             <select id="lang">
-                <option value="EN">İngilizce</option>
-                <option value="TR">Türkçe</option>
-                <option value="FR">Fransızca</option>
-                <option value="DE">Almanca</option>
+                <option value="en">English</option>
+                <option value="tr">Turkish</option>
             </select>
 
-            <label for="startDate">Başlangıç Tarihi</label>
+            <label for="startDate">Start Date</label>
             <input type="date" id="startDate">
 
-            <label for="endDate">Bitiş Tarihi</label>
+            <label for="endDate">End Date</label>
             <input type="date" id="endDate">
 
-            <button type="submit">Verileri Çek</button>
+            <button type="submit">Fetch Data</button>
         </form>
         
         <canvas id="dataChart"></canvas>
