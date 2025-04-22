@@ -3,41 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GlobalLENS</title>
+    <title>GlobaLENS - Global Agenda Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>GlobalLENS</h1>
-        <form id="settingsForm">
-            <label for="region">Region</label>
-            <select id="region">
-                <option value="world">World</option>
-                <option value="us">USA</option>
-                <option value="europe">Europe</option>
-                <option value="asia">Asia</option>
-                <option value="middleeast">Middle East</option>
-            </select>
+        <header>
+            <h1>GlobaLENS</h1>
+            <p>Global agenda at your fingertips</p>
+        </header>
 
-            <label for="lang">Language</label>
-            <select id="lang">
-                <option value="en">English</option>
-                <option value="tr">Turkish</option>
-            </select>
+        <div class="control-panel">
+            <div class="input-group">
+                <label for="region">Region:</label>
+                <select id="region">
+                    <option value="global">Global</option>
+                    <option value="europe">Europe</option>
+                    <option value="asia">Asia</option>
+                    <option value="americas">Americas</option>
+                    <option value="middle_east">Middle East</option>
+                    <option value="africa">Africa</option>
+                </select>
+            </div>
 
-            <label for="startDate">Start Date</label>
-            <input type="date" id="startDate">
+            <div class="input-group">
+                <label for="timeframe">Timeframe:</label>
+                <select id="timeframe">
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="90">Last 90 days</option>
+                </select>
+            </div>
 
-            <label for="endDate">End Date</label>
-            <input type="date" id="endDate">
+            <button id="fetchData">Analyze</button>
+            <button id="exportData">Export Data</button>
+        </div>
 
-            <button type="submit">Fetch Data</button>
-        </form>
-        
-        <canvas id="dataChart"></canvas>
+        <div class="analytics-container">
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+            <div class="wordcloud-container" id="wordcloud"></div>
+        </div>
+
+        <div class="news-container" id="newsContainer"></div>
+
+        <div class="notes-section">
+            <h3>Analyst Notes</h3>
+            <textarea id="analystNotes" placeholder="Write your analysis notes here..."></textarea>
+            <button id="saveNotes">Save Notes</button>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="api.js"></script>
+    <script src="keywords.js"></script>
+    <script src="chart.js"></script>
+    <script src="export.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
