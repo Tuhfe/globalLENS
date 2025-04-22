@@ -1,4 +1,6 @@
-export async function fetchNewsData() {
-  const response = await fetch('http://localhost:3001/api/news'); // Port 3001 olmalı!
+const API_URL = 'https://your-globalens-backend.herokuapp.com/api'; // Örnek URL
+
+export async function fetchNewsData(region) {
+  const response = await fetch(`${API_URL}/news?region=${region}`);
   return await response.json();
 }
