@@ -67,3 +67,14 @@ function exportData(data) {
     link.setAttribute("download", "data.csv");
     link.click();
 }
+function fetchNewsData() {
+    fetch('API_URL')
+    .then(response => response.json())
+    .then(data => {
+        console.log(data); 
+    })
+    .catch(error => {
+        console.error('API Hatası:', error);
+    });
+}
+document.getElementById("analizTusu").addEventListener("click", fetchNewsData);
