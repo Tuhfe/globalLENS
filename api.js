@@ -1,6 +1,10 @@
-const API_URL = 'https://your-globalens-backend.herokuapp.com/api'; // Örnek URL
-
-export async function fetchNewsData(region) {
-  const response = await fetch(`${API_URL}/news?region=${region}`);
-  return await response.json();
+export async function fetchNewsData() {
+  try {
+    const response = await fetch('https://newsapi.org/v2/top-headlines?country=tr');
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("API Hatası:", error);
+    throw error; // Hata yukarı fırlatılıyor
+  }
 }
