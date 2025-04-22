@@ -1,55 +1,40 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
     text-align: center;
+    padding: 50px;
 }
 
 .container {
-    width: 60%;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
-h1 {
-    color: #333;
-}
-
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-}
-
-form label {
-    display: block;
-    margin: 10px 0 5px;
-}
-
-form select, form input {
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form button {
+select, input, button {
     padding: 10px 20px;
-    background-color: #007BFF;
-    color: white;
+    margin: 10px;
+    font-size: 16px;
+    border-radius: 10px;
     border: none;
-    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
     cursor: pointer;
 }
 
-form button:hover {
-    background-color: #0056b3;
+button:hover {
+    background-color: #45a049;
 }
 
-#output {
-    margin-top: 30px;
+canvas {
+    margin-top: 20px;
+    width: 100%;
+    height: 400px;
 }
