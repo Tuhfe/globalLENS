@@ -197,3 +197,30 @@ button:hover {
     color: white;
     margin-right: 5px;
 }
+.loading, .info, .error {
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.loading {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+.info {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.error ul {
+    text-align: left;
+    max-width: 500px;
+    margin: 10px auto;
+}
