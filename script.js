@@ -1,49 +1,43 @@
-document.getElementById("fetchDataBtn").addEventListener("click", async function() {
-  const region = document.getElementById("regionSelect").value;
-  const language = document.getElementById("languageSelect").value;
-  const dateRange = document.getElementById("dateRange").value;
+document.getElementById("settingsForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  if (!region || !language || !dateRange) {
-    document.getElementById("analysisResult").innerText = "Lütfen tüm alanları doldurun.";
-    return;
-  }
+    const region = document.getElementById("region").value;
+    const lang = document.getElementById("lang").value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
 
-  const [startDate, endDate] = dateRange.split(" to ");
-  if (!startDate || !endDate) {
-    document.getElementById("analysisResult").innerText = "Geçerli bir tarih aralığı girin.";
-    return;
-  }
+    const apiUrl = `https://api.example.com/data?region=${region}&lang=${lang}&start=${startDate}&end=${endDate}`;
 
-  try {
-    const apiUrl = `https://example.com/api/region=${region}&lang=${language}&start=${startDate}&end=${endDate}`;
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data); // Gelen veriyi konsola yazdırıyoruz.
 
-    if (data && data.length > 0) {
-      // Anahtar kelime çıkarımı ve görselleştirme yapılabilir
-      const keywords = extractKeywords(data);
-      const visualization = generateVisualization(data);
+            // Burada görselleştirmeyi yapmak için Chart.js kullanacağız.
+            const labels = data.map(item => item.date); // Verilerin tarih kısmını etiket olarak kullanıyoruz.
+            const values = data.map(item => item.value); // Verilerin değer kısmını kullanıyoruz.
 
-      document.getElementById("analysisResult").innerHTML = `
-        <p><strong>Gündem:</strong></p>
-        <p>${keywords}</p>
-        <p>${visualization}</p>
-      `;
-    } else {
-      document.getElementById("analysisResult").innerText = "Veri bulunamadı.";
-    }
-  } catch (error) {
-    document.getElementById("analysisResult").innerText = "Hata oluştu: " + error.message;
-  }
+            const ctx = document.getElementById("dataChart").getContext("2d");
+            new Chart(ctx, {
+                type: 'line', // Çizgi grafik
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Veri Değeri',
+                        data: values,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        })
+        .catch(error => console.error("Veri çekme hatası:", error));
 });
-
-function extractKeywords(data) {
-  // Basit anahtar kelime çıkarımı için örnek
-  const keywords = ['conflict', 'summit', 'sanction', 'military', 'diplomacy'];
-  return keywords.join(', ');
-}
-
-function generateVisualization(data) {
-  // Bu fonksiyon görselleştirme için grafik oluşturabilir
-  return "Grafik Görselleştirme Yapılabilir.";
-}
