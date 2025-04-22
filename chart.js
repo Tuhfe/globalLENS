@@ -1,22 +1,15 @@
-const ctx = document.getElementById("dataChart").getContext("2d");
-const chart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Veri 1', 'Veri 2', 'Veri 3'],
+function generateChartData(data) {
+    const labels = data.map(article => article.title);
+    const values = data.map(article => article.source.name.length);
+
+    return {
+        labels: labels,
         datasets: [{
-            label: 'Veri Değeri',
-            data: [10, 20, 30],
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
+            label: 'Article Source Length',
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1
         }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+    };
+}
