@@ -1,35 +1,49 @@
-const apiKey = "1a6bfcf1ba4a4947b4736aabc0e5d42f";
-const translateBtn = document.getElementById("translateBtn");
-const textInput = document.getElementById("textInput");
-const languageSelect = document.getElementById("languageSelect");
-const resultDiv = document.getElementById("result");
+document.getElementById("fetchDataBtn").addEventListener("click", async function() {
+  const region = document.getElementById("regionSelect").value;
+  const language = document.getElementById("languageSelect").value;
+  const dateRange = document.getElementById("dateRange").value;
 
-translateBtn.addEventListener("click", async () => {
-  const text = textInput.value;
-  const targetLang = languageSelect.value;
+  if (!region || !language || !dateRange) {
+    document.getElementById("analysisResult").innerText = "Lütfen tüm alanları doldurun.";
+    return;
+  }
 
-  if (!text.trim()) {
-    resultDiv.innerText = "Lütfen bir metin gir.";
+  const [startDate, endDate] = dateRange.split(" to ");
+  if (!startDate || !endDate) {
+    document.getElementById("analysisResult").innerText = "Geçerli bir tarih aralığı girin.";
     return;
   }
 
   try {
-    const response = await fetch("https://api-free.deepl.com/v2/translate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      body: `auth_key=${apiKey}&text=${encodeURIComponent(text)}&target_lang=${targetLang}`
-    });
-
+    const apiUrl = `https://example.com/api/region=${region}&lang=${language}&start=${startDate}&end=${endDate}`;
+    const response = await fetch(apiUrl);
     const data = await response.json();
 
-    if (data.translations && data.translations.length > 0) {
-      resultDiv.innerText = data.translations[0].text;
+    if (data && data.length > 0) {
+      // Anahtar kelime çıkarımı ve görselleştirme yapılabilir
+      const keywords = extractKeywords(data);
+      const visualization = generateVisualization(data);
+
+      document.getElementById("analysisResult").innerHTML = `
+        <p><strong>Gündem:</strong></p>
+        <p>${keywords}</p>
+        <p>${visualization}</p>
+      `;
     } else {
-      resultDiv.innerText = "Çeviri yapılamadı.";
+      document.getElementById("analysisResult").innerText = "Veri bulunamadı.";
     }
   } catch (error) {
-    resultDiv.innerText = "Hata oluştu: " + error.message;
+    document.getElementById("analysisResult").innerText = "Hata oluştu: " + error.message;
   }
 });
+
+function extractKeywords(data) {
+  // Basit anahtar kelime çıkarımı için örnek
+  const keywords = ['conflict', 'summit', 'sanction', 'military', 'diplomacy'];
+  return keywords.join(', ');
+}
+
+function generateVisualization(data) {
+  // Bu fonksiyon görselleştirme için grafik oluşturabilir
+  return "Grafik Görselleştirme Yapılabilir.";
+}
