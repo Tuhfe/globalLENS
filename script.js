@@ -1,6 +1,22 @@
 document.getElementById("settingsForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
+    const startDate = new Date(document.getElementById("startDate").value);
+    const endDate = new Date(document.getElementById("endDate").value);
+
+    if (startDate > endDate) {
+        alert("Başlangıç tarihi, bitiş tarihinden sonra olamaz!");
+        return;
+    }
+
+    const region = document.getElementById("region").value;
+    const lang = document.getElementById("lang").value;
+
+    fetchData(region, lang, startDate, endDate);  // Bu fonksiyonu çağırıyoruz
+});
+document.getElementById("settingsForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
     const region = document.getElementById("region").value;
     const lang = document.getElementById("lang").value;
     const startDate = document.getElementById("startDate").value;
