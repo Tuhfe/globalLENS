@@ -53,3 +53,7 @@ function fetchData() {
         })
         .catch(error => console.error("Hata: ", error));
 }
+function displayError(message) {
+    const errorElement = document.getElementById("error-message");
+    errorElement.innerText = message;
+}
