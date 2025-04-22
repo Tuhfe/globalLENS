@@ -68,3 +68,19 @@ export function renderTrendChart(data) {
         }
     });
 }
+function processData(data) {
+    const ctx = document.getElementById("myChart").getContext("2d");
+    const chart = new Chart(ctx, {
+        type: 'bar',  // Grafiğin türü
+        data: {
+            labels: data.labels,  // API'den gelen etiketler
+            datasets: [{
+                label: "Analiz Sonuçları",
+                data: data.values,  // API'den gelen sayısal veriler
+                backgroundColor: 'rgba(255, 99, 132, 0.2)', 
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        }
+    });
+}
