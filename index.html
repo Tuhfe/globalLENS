@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>globalLENS - Uluslararası Gündem İzleyici</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlobaLENS - Uluslararası Gündem İzleyici</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>globalLENS - Uluslararası Gündem İzleyici</h1>
+    <div class="container">
+        <h1>GlobaLENS - Uluslararası Gündem İzleyici</h1>
 
-    <div class="form-group">
-      <label for="regionSelect">Bölge Seçin:</label>
-      <select id="regionSelect">
-        <option value="NATO">NATO Ülkeleri</option>
-        <option value="strategic">Stratejik Ülkeler</option>
-        <option value="crisis">Kriz Bölgeleri</option>
-      </select>
+        <form id="settingsForm">
+            <label for="region">Bölge Seçin:</label>
+            <select id="region" name="region">
+                <option value="nato">NATO Üyeleri</option>
+                <option value="strategic">Stratejik Ülkeler</option>
+                <option value="crisis">Krizin Olduğu Bölgeler</option>
+            </select>
+
+            <label for="lang">Dil Seçin:</label>
+            <select id="lang" name="lang">
+                <option value="en">İngilizce</option>
+                <option value="tr">Türkçe</option>
+            </select>
+
+            <label for="startDate">Başlangıç Tarihi:</label>
+            <input type="date" id="startDate" name="startDate">
+
+            <label for="endDate">Bitiş Tarihi:</label>
+            <input type="date" id="endDate" name="endDate">
+
+            <button type="submit">Verileri Çek</button>
+        </form>
+
+        <div id="output">
+            <h2>Veri Görselleştirme</h2>
+            <canvas id="dataChart"></canvas>
+        </div>
+
+        <script src="script.js"></script>
     </div>
-
-    <div class="form-group">
-      <label for="languageSelect">Dil Seçin:</label>
-      <select id="languageSelect">
-        <option value="EN">İngilizce</option>
-        <option value="TR">Türkçe</option>
-        <option value="FR">Fransızca</option>
-        <option value="DE">Almanca</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="dateRange">Tarih Aralığı Seçin:</label>
-      <input type="text" id="dateRange" placeholder="YYYY-MM-DD to YYYY-MM-DD">
-    </div>
-
-    <button id="fetchDataBtn">Verileri Al ve Analiz Et</button>
-
-    <div id="analysisResult"></div>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
