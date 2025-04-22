@@ -1,8 +1,3 @@
-import { fetchNewsData } from './api.js';
-import { analyzeKeywords } from './keywords.js';
-import { renderTrendChart } from './chart.js';
-import { exportData } from './export.js';
-
 document.addEventListener('DOMContentLoaded', () => {
     const fetchButton = document.getElementById('fetchData');
     const exportButton = document.getElementById('exportData');
@@ -20,15 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchButton.disabled = true;
         fetchButton.textContent = 'Loading...';
         
-        const articles = await fetchNewsData(region, timeframe);
-        currentArticles = processArticles(articles);
-        
-        renderNews(currentArticles);
-        renderTrendChart(currentArticles);
-        renderWordCloud(currentArticles);
-        
-        fetchButton.disabled = false;
-        fetchButton.textContent = 'Analyze';
+        try {
+            const articles = await fetchNewsData(region, timeframe);
+            currentArticles = processArticles(articles);
+            
+            renderNews(currentArticles);
+            renderTrendChart(currentArticles);
+            renderWordCloud(currentArticles);
+        } catch (error) {
+            console.error('Error:', error);
+            newsContainer.innerHTML = `<p class="error">Error fetching data: ${error.message}</p>`;
+        } finally {
+            fetchButton.disabled = false;
+            fetchButton.textContent = 'Analyze';
+        }
     });
     
     exportButton.addEventListener('click', () => {
@@ -135,3 +135,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return colors[Math.floor(Math.random() * colors.length)];
     }
 });
+
+// Eksik importları global scope'a ekliyoruz
+async function fetchNewsData(region, timeframe) {
+    return (await import('./api.js')).fetchNewsData(region, timeframe);
+}
+
+function analyzeKeywords(text) {
+    return (0, eval('import')('./keywords.js')).then(module => module.analyzeKeywords(text));
+}
+
+function renderTrendChart(data) {
+    return (0, eval('import')('./chart.js')).then(module => module.renderTrendChart(data));
+}
+
+function exportData(articles, notes) {
+    return (0, eval('import')('./export.js')).then(module => module.exportData(articles, notes));
+}
